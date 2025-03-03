@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Ideas</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input { padding: 10px; margin-right: 10px; }
+        button { padding: 10px; cursor: pointer; }
+        #recipes { margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Recipe Ideas</h1>
+    <input type="text" id="ingredient" placeholder="Enter an ingredient">
+    <button onclick="getRecipes()">Get Recipes</button>
+    <div id="recipes"></div>
+    
+    <script>
+        const recipes = [
+            { name: "Grilled Chicken Salad", ingredients: ["chicken", "lettuce", "tomato"] },
+            { name: "Pasta Alfredo", ingredients: ["pasta", "cream", "cheese"] },
+            { name: "Vegetable Stir Fry", ingredients: ["carrot", "broccoli", "pepper"] },
+            { name: "Omelette", ingredients: ["egg", "cheese", "onion"] },
+            { name: "Banana Smoothie", ingredients: ["banana", "milk", "honey"] }
+        ];
+
+        function getRecipes() {
+            const ingredient = document.getElementById("ingredient").value.toLowerCase();
+            const filteredRecipes = recipes.filter(recipe => recipe.ingredients.includes(ingredient));
+            
+            if (filteredRecipes.length > 0) {
+                let output = "<h2>Recipe Ideas:</h2><ul>";
+                filteredRecipes.forEach(recipe => {
+                    output += `<li>${recipe.name}</li>`;
+                });
+                output += "</ul>";
+                document.getElementById("recipes").innerHTML = output;
+            } else {
+                document.getElementById("recipes").innerHTML = "No recipes found!";
+            }
+        }
+    </script>
+</body>
+</html>
